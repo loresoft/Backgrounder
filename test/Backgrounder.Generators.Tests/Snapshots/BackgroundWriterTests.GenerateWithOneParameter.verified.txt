@@ -8,21 +8,23 @@ namespace Backgrounder.Sample
     /// </summary>
     public static partial class SampleJobDoWorkExtensions
     {
+        public record DoWorkMessageABCD(int? jobId);
+
         /// <summary>
         /// Enqueue the method public Task DoWork(int?) for execution in the background
         /// </summary>
         public static async global::System.Threading.Tasks.Task DoWork(this global::Backgrounder.IBackgrounder backgrounder, int? jobId)
         {
-            var parameterTuple = new global::System.Tuple<int?>(jobId);
-            await backgrounder.EnqueueAsync("public Task DoWork(int?)", parameterTuple);
+            var methodParameters = new DoWorkMessageABCD(jobId);
+            await backgrounder.EnqueueAsync("public Task DoWork(int?)", methodParameters);
         }
 
         internal static async global::System.Threading.Tasks.Task ExecuteDoWorkABCD(global::System.IServiceProvider serviceProvider, byte[] messageBody)
         {
-            var messageSerializer = serviceProvider.GetRequiredService<global::Backgrounder.IMessageSerializer>();
-            var methodParameters = messageSerializer.Deserialize<global::System.Tuple<int?>>(messageBody);
-            var worker = serviceProvider.GetRequiredService<SampleJob>();
-            await worker.DoWork(methodParameters.Item1);
+            var messageSerializer = global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::Backgrounder.IMessageSerializer>(serviceProvider);
+            var methodParameters = messageSerializer.Deserialize<DoWorkMessageABCD>(messageBody);
+            var worker = global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<SampleJob>(serviceProvider);
+            await worker.DoWork(methodParameters.jobId);
         }
 
         [global::System.Runtime.CompilerServices.ModuleInitializerAttribute]

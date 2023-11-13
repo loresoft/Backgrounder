@@ -8,21 +8,23 @@ namespace Backgrounder.Sample
     /// </summary>
     public static partial class SampleJobMultipleParameterExtensions
     {
+        public record MultipleParameterMessageXEWDF(int? jobId, string? name);
+
         /// <summary>
         /// Enqueue the method public Task DoWork(int?, string?) for execution in the background
         /// </summary>
         public static async global::System.Threading.Tasks.Task MultipleParameter(this global::Backgrounder.IBackgrounder backgrounder, int? jobId, string? name)
         {
-            var parameterTuple = new global::System.Tuple<int?, string?>(jobId, name);
-            await backgrounder.EnqueueAsync("public Task DoWork(int?, string?)", parameterTuple);
+            var methodParameters = new MultipleParameterMessageXEWDF(jobId, name);
+            await backgrounder.EnqueueAsync("public Task DoWork(int?, string?)", methodParameters);
         }
 
         internal static async global::System.Threading.Tasks.Task ExecuteMultipleParameterXEWDF(global::System.IServiceProvider serviceProvider, byte[] messageBody)
         {
-            var messageSerializer = serviceProvider.GetRequiredService<global::Backgrounder.IMessageSerializer>();
-            var methodParameters = messageSerializer.Deserialize<global::System.Tuple<int?, string?>>(messageBody);
-            var worker = serviceProvider.GetRequiredService<ISampleJob>();
-            await worker.MultipleParameter(methodParameters.Item1, methodParameters.Item2);
+            var messageSerializer = global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::Backgrounder.IMessageSerializer>(serviceProvider);
+            var methodParameters = messageSerializer.Deserialize<MultipleParameterMessageXEWDF>(messageBody);
+            var worker = global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ISampleJob>(serviceProvider);
+            await worker.MultipleParameter(methodParameters.jobId, methodParameters.name);
         }
 
         [global::System.Runtime.CompilerServices.ModuleInitializerAttribute]
