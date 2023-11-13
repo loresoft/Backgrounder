@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder", "src\Backgrounder\Backgrounder.csproj", "{17E1EDE7-E502-4D90-9740-4063F3F002B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{7913FEDB-7E41-46B5-A789-259146EA8BA1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Sample", "samples\Backgrounder.Sample\Backgrounder.Sample.csproj", "{0179E66C-863C-48D0-B145-517FB47F35A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Azure.ServiceBus", "src\Backgrounder.Azure.ServiceBus\Backgrounder.Azure.ServiceBus.csproj", "{091EE48B-7B76-4B62-8007-F8FC9CE71187}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F089EA71-2A5E-4F5F-B843-67E2FF9DBB00}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Tests", "test\Backgrounder.Tests\Backgrounder.Tests.csproj", "{5824A417-59B2-4F40-8A4D-2AE64F28B338}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Azure.ServiceBus.Tests", "test\Backgrounder.Azure.ServiceBus.Tests\Backgrounder.Azure.ServiceBus.Tests.csproj", "{0B1ED390-B2CB-4863-B956-2391B01197CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Generators", "src\Backgrounder.Generators\Backgrounder.Generators.csproj", "{24D6B692-C579-47B1-A041-1DD440B82764}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{1AA0FC81-4621-47EC-9D4F-B64662B68CC8}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backgrounder.Generators.Tests", "test\Backgrounder.Generators.Tests\Backgrounder.Generators.Tests.csproj", "{5688BE7D-01D0-4DAE-96B3-CD2D68739B83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backgrounder.Sample.Library", "samples\Backgrounder.Sample.Library\Backgrounder.Sample.Library.csproj", "{098517FD-EFBF-4B60-976B-DF26D5BA4493}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17E1EDE7-E502-4D90-9740-4063F3F002B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17E1EDE7-E502-4D90-9740-4063F3F002B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17E1EDE7-E502-4D90-9740-4063F3F002B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17E1EDE7-E502-4D90-9740-4063F3F002B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0179E66C-863C-48D0-B145-517FB47F35A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0179E66C-863C-48D0-B145-517FB47F35A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0179E66C-863C-48D0-B145-517FB47F35A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0179E66C-863C-48D0-B145-517FB47F35A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{091EE48B-7B76-4B62-8007-F8FC9CE71187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{091EE48B-7B76-4B62-8007-F8FC9CE71187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{091EE48B-7B76-4B62-8007-F8FC9CE71187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{091EE48B-7B76-4B62-8007-F8FC9CE71187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5824A417-59B2-4F40-8A4D-2AE64F28B338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5824A417-59B2-4F40-8A4D-2AE64F28B338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5824A417-59B2-4F40-8A4D-2AE64F28B338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5824A417-59B2-4F40-8A4D-2AE64F28B338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B1ED390-B2CB-4863-B956-2391B01197CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B1ED390-B2CB-4863-B956-2391B01197CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B1ED390-B2CB-4863-B956-2391B01197CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B1ED390-B2CB-4863-B956-2391B01197CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24D6B692-C579-47B1-A041-1DD440B82764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24D6B692-C579-47B1-A041-1DD440B82764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24D6B692-C579-47B1-A041-1DD440B82764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24D6B692-C579-47B1-A041-1DD440B82764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5688BE7D-01D0-4DAE-96B3-CD2D68739B83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5688BE7D-01D0-4DAE-96B3-CD2D68739B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5688BE7D-01D0-4DAE-96B3-CD2D68739B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5688BE7D-01D0-4DAE-96B3-CD2D68739B83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{098517FD-EFBF-4B60-976B-DF26D5BA4493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{098517FD-EFBF-4B60-976B-DF26D5BA4493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{098517FD-EFBF-4B60-976B-DF26D5BA4493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{098517FD-EFBF-4B60-976B-DF26D5BA4493}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0179E66C-863C-48D0-B145-517FB47F35A2} = {7913FEDB-7E41-46B5-A789-259146EA8BA1}
+		{5824A417-59B2-4F40-8A4D-2AE64F28B338} = {F089EA71-2A5E-4F5F-B843-67E2FF9DBB00}
+		{0B1ED390-B2CB-4863-B956-2391B01197CA} = {F089EA71-2A5E-4F5F-B843-67E2FF9DBB00}
+		{5688BE7D-01D0-4DAE-96B3-CD2D68739B83} = {F089EA71-2A5E-4F5F-B843-67E2FF9DBB00}
+		{098517FD-EFBF-4B60-976B-DF26D5BA4493} = {7913FEDB-7E41-46B5-A789-259146EA8BA1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9DF2C62A-4B5E-44B4-A7EC-5D6C935CF1CA}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Backgrounder.Sample": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\..\\samples\\Backgrounder.Sample\\Backgrounder.Sample.csproj"
+    }
+  }
+}
