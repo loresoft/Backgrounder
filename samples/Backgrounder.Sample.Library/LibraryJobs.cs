@@ -1,39 +1,32 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Backgrounder.Sample.Library
+namespace Backgrounder.Sample.Library;
+
+public class LibraryJobs
 {
-    public class LibraryJobs
+    [BackgroundOperation]
+    public Task LibraryWork(int? jobId)
     {
-        [BackgroundOperation]
-        public Task DoWork(int? jobId)
-        {
-            return Task.FromResult(jobId);
-        }
-
-        [BackgroundOperation]
-        public Task CompleteWork(int jobId)
-        {
-            return Task.FromResult(jobId);
-        }
-
-        [BackgroundOperation]
-        public static Task StaticWork(int jobId)
-        {
-            return Task.FromResult(jobId);
-        }
-
-
-        [BackgroundOperation(ExtensionName = "RunScheduler")]
-        public Task RunSchedule()
-        {
-            return Task.CompletedTask;
-        }
-
+        return Task.FromResult(jobId);
     }
-}
+
+    [BackgroundOperation]
+    public Task LibraryCompleteWork(int jobId)
+    {
+        return Task.FromResult(jobId);
+    }
+
+    [BackgroundOperation]
+    public static Task LibraryStaticWork(int jobId)
+    {
+        return Task.FromResult(jobId);
+    }
 
 
-namespace System.Runtime.CompilerServices
-{
+    [BackgroundOperation(ExtensionName = "LibraryScheduler")]
+    public Task RunSchedule()
+    {
+        return Task.CompletedTask;
+    }
 }

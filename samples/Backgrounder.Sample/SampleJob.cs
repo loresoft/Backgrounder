@@ -9,7 +9,7 @@ public class SampleJob : ISampleJob
         _logger = logger;
     }
 
-    //[BackgroundOperation]
+    [BackgroundOperation]
     public Task DoWork(int? jobId)
     {
         _logger.LogInformation("DoWork Job {JobId}", jobId);

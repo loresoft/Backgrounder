@@ -30,13 +30,13 @@ public class BackgroundGenerator : IIncrementalGenerator
 
         // Emit the diagnostics, if needed
         var diagnostics = provider
-            .Select(static (item, _) => item.Diagnostics)
+            .Select(static (item, _) => item!.Diagnostics)
             .Where(static item => item.Count > 0);
 
         context.RegisterSourceOutput(diagnostics, ReportDiagnostic);
 
         var backgroundMethods = provider
-            .Select(static (item, _) => item.Method)
+            .Select(static (item, _) => item!.Method)
             .Where(static item => item is not null);
 
         context.RegisterSourceOutput(backgroundMethods, Execute);

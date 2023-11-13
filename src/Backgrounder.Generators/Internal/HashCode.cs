@@ -1,5 +1,3 @@
-using System;
-
 namespace Backgrounder.Generators.Internal;
 
 /// <summary>
@@ -73,7 +71,7 @@ public readonly struct HashCode : IFormattable, IEquatable<HashCode>
     /// </summary>
     /// <param name="value">The value to combine hash codes with.</param>
     /// <returns>A new hash code combined with this and the values hash codes.</returns>
-    public HashCode Combine(object value)
+    public HashCode Combine(object? value)
     {
         // need to handle string values deterministically
         return value switch
@@ -89,7 +87,7 @@ public readonly struct HashCode : IFormattable, IEquatable<HashCode>
     /// <typeparam name="TValue">The type of the value.</typeparam>
     /// <param name="values">The values to combine hash codes with.</param>
     /// <returns>A new hash code combined with this and the values hash codes.</returns>
-    public HashCode CombineAll<TValue>(IEnumerable<TValue> values)
+    public HashCode CombineAll<TValue>(IEnumerable<TValue>? values)
     {
         if (values == null)
             return this;
@@ -171,7 +169,7 @@ public readonly struct HashCode : IFormattable, IEquatable<HashCode>
     /// <returns>
     ///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
     /// </returns>
-    public override bool Equals(object other) => other is HashCode code && Equals(code);
+    public override bool Equals(object? other) => other is HashCode code && Equals(code);
 
     /// <summary>
     /// Indicates whether the current object is equal to another object of the same type.

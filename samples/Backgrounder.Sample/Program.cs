@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Backgrounder.Sample.Library;
 
 namespace Backgrounder.Sample;
 
@@ -26,6 +27,8 @@ public class Program
         await backgrounder.CompleteWork(456);
         await backgrounder.CheckPerson(new Person { Name = "Test" });
         await backgrounder.RunScheduler();
+
+        await backgrounder.LibraryWork(123);
 
         await host.RunAsync();
     }

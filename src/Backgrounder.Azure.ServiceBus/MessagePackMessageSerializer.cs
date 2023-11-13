@@ -12,7 +12,7 @@ public class MessagePackMessageSerializer : IMessageSerializer
     private readonly MessagePackSerializerOptions _messagePackSerializerOptions;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="MessagePackCacheSerializer"/> class.
+    /// Initializes a new instance of the <see cref="MessagePackMessageSerializer"/> class.
     /// </summary>
     /// <param name="messagePackSerializerOptions">The message pack serializer options.</param>
     public MessagePackMessageSerializer(MessagePackSerializerOptions? messagePackSerializerOptions = null)
