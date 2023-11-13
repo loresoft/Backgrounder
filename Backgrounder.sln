@@ -21,14 +21,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Generators", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{1AA0FC81-4621-47EC-9D4F-B64662B68CC8}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		src\Directory.Build.props = src\Directory.Build.props
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backgrounder.Generators.Tests", "test\Backgrounder.Generators.Tests\Backgrounder.Generators.Tests.csproj", "{5688BE7D-01D0-4DAE-96B3-CD2D68739B83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Generators.Tests", "test\Backgrounder.Generators.Tests\Backgrounder.Generators.Tests.csproj", "{5688BE7D-01D0-4DAE-96B3-CD2D68739B83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backgrounder.Sample.Library", "samples\Backgrounder.Sample.Library\Backgrounder.Sample.Library.csproj", "{098517FD-EFBF-4B60-976B-DF26D5BA4493}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Sample.Library", "samples\Backgrounder.Sample.Library\Backgrounder.Sample.Library.csproj", "{098517FD-EFBF-4B60-976B-DF26D5BA4493}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
