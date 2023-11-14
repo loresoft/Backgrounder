@@ -134,6 +134,36 @@ public class Person
             .ScrubLinesContaining("GeneratedCodeAttribute");
     }
 
+    [Fact]
+    public Task GenerateAttributeName()
+    {
+        var source = @"
+using Backgrounder;
+
+namespace Backgrounder.Sample;
+
+public interface ISampleJob
+{
+    Task RunSchedule();
+}
+
+public class SampleJob : ISampleJob
+{
+    [BackgroundOperation(ExtensionName = ""RunScheduler"", ServiceType = typeof(ISampleJob))]
+    public Task RunSchedule() => Task.CompletedTask;
+}
+";
+
+        var (diagnostics, output) = GetGeneratedOutput<BackgroundGenerator>(source);
+
+        diagnostics.Should().BeEmpty();
+
+        return Verifier
+            .Verify(output)
+            .UseDirectory("Snapshots")
+            .ScrubLinesContaining("GeneratedCodeAttribute");
+    }
+
     public static (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput<T>(string source)
         where T : IIncrementalGenerator, new()
     {

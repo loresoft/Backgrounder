@@ -1,3 +1,5 @@
+using Backgrounder.Generators.Internal;
+
 namespace Backgrounder.Generators.Tests;
 
 [UsesVerify]
@@ -50,6 +52,31 @@ public class BackgroundWriterTests
                 new MethodParameter("jobId", "int?"),
                 new MethodParameter("name", "string?"),
             })
+        );
+
+
+        var source = BackgroundWriter.Generate(backgroundMethod);
+
+        return Verifier
+            .Verify(source)
+            .UseDirectory("Snapshots")
+            .ScrubLinesContaining("GeneratedCodeAttribute");
+    }
+
+    [Fact]
+    public Task GenerateWithNoParameter()
+    {
+        var backgroundMethod = new BackgroundMethod(
+            ClassNamespace: "Backgrounder.Sample",
+            ClassName: "SampleJob",
+            ServiceType: "SampleJob",
+            MethodName: "RunWork",
+            ExtensionName: "RunWork",
+            MethodSignature: "public Task RunWork(int?)",
+            MethodHash: "FDSSA",
+            IsStatic: false,
+            IsAsync: true,
+            Parameters: EquatableArray<MethodParameter>.Empty
         );
 
 

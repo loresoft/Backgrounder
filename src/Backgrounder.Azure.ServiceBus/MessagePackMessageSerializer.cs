@@ -1,7 +1,7 @@
 using MessagePack.Resolvers;
 using MessagePack;
 
-namespace Backgrounder;
+namespace Backgrounder.Azure.ServiceBus;
 
 /// <summary>
 /// A MessagePack implementation of IMessageSerializer

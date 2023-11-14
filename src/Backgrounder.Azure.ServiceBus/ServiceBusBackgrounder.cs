@@ -5,7 +5,7 @@ using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Backgrounder;
+namespace Backgrounder.Azure.ServiceBus;
 
 public class ServiceBusBackgrounder : IBackgrounder
 {

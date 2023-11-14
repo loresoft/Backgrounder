@@ -47,7 +47,7 @@ public class SampleJob : ISampleJob
     }
 
 
-    [BackgroundOperation(ExtensionName = "RunScheduler")]
+    [BackgroundOperation(ExtensionName = "RunScheduler", ServiceType = typeof(ISampleJob))]
     public Task RunSchedule()
     {
         _logger.LogInformation("RunSchedule()");
