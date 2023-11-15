@@ -15,6 +15,8 @@ public class ServiceBusBackgroundService : IBackgroundService
     private readonly Lazy<ServiceBusProcessor> _serviceBusProcessor;
     private readonly Lazy<ServiceBusSender> _serviceBusSender;
 
+    private readonly ThreadLocal<Random> _random = new(() => new Random());
+
     private int _activeProcesses;
 
     public ServiceBusBackgroundService(
@@ -32,6 +34,8 @@ public class ServiceBusBackgroundService : IBackgroundService
         _serviceBusProcessor = new Lazy<ServiceBusProcessor>(() => _serviceBusClient.CreateProcessor(_options.Value.QueueName));
     }
 
+    public bool IsBusy => _activeProcesses > 0;
+
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         _serviceBusProcessor.Value.ProcessMessageAsync += MessageHandler;
@@ -48,6 +52,13 @@ public class ServiceBusBackgroundService : IBackgroundService
             _serviceBusProcessor.Value.ProcessErrorAsync -= ErrorHandler;
 
             await _serviceBusProcessor.Value.StopProcessingAsync(cancellationToken);
+        }
+
+        // wait for processing to finish
+        var timeout = DateTimeOffset.UtcNow.AddMinutes(5);
+        while (IsBusy && timeout > DateTimeOffset.UtcNow)
+        {
+            await Task.Delay(500, cancellationToken);
         }
     }
 
@@ -89,12 +100,22 @@ public class ServiceBusBackgroundService : IBackgroundService
         {
             _logger.LogError(ex, "Error processing background work: {message}", ex.Message);
 
-            // schedule retry
-            var scheduledMessage = new ServiceBusMessage(processMessage.Message);
-            await _serviceBusSender.Value.ScheduleMessageAsync(scheduledMessage, DateTimeOffset.UtcNow.AddMinutes(5));
 
-            // complete orginal
-            await processMessage.CompleteMessageAsync(processMessage.Message);
+            var scheduledMessage = new ServiceBusMessage(processMessage.Message);
+
+            var (delay, retryCount) = RetryDelay(scheduledMessage);
+
+            if (retryCount <= _options.Value.MaxRetryAttempts)
+            {
+                await _serviceBusSender.Value.ScheduleMessageAsync(scheduledMessage, DateTimeOffset.UtcNow.Add(delay));
+
+                // complete original
+                await processMessage.CompleteMessageAsync(processMessage.Message);
+            }
+            else
+            {
+                await processMessage.DeadLetterMessageAsync(processMessage.Message, "Max message retry reached", "The maximum message retry has been reached");
+            }
         }
         finally
         {
@@ -102,5 +123,31 @@ public class ServiceBusBackgroundService : IBackgroundService
         }
     }
 
+    private (TimeSpan, int) RetryDelay(ServiceBusMessage scheduledMessage)
+    {
+        scheduledMessage.ApplicationProperties.TryGetValue("RetryCount", out var retryValue);
+        if (retryValue is int retryCount)
+            retryCount++;
+        else
+            retryCount = 1;
 
+        scheduledMessage.ApplicationProperties.TryGetValue("DelayState", out var delayValue);
+        if (delayValue is not double delayState)
+            delayState = 0;
+
+        var options = _options.Value;
+        var backoffDelay = RetryHelper.GetRetryDelay(
+            type: options.BackoffType,
+            jitter: options.UseJitter,
+            attempt: retryCount,
+            baseDelay: options.RetryDelay,
+            maxDelay: options.MaxRetryDelay,
+            state: ref delayState,
+            randomizer: _random.Value!.NextDouble);
+
+        scheduledMessage.ApplicationProperties["RetryCount"] = retryCount;
+        scheduledMessage.ApplicationProperties["DelayState"] = delayState;
+
+        return (backoffDelay, retryCount);
+    }
 }

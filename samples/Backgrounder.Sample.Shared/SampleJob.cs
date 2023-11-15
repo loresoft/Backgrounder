@@ -19,6 +19,16 @@ public class SampleJob : ISampleJob
         return Task.FromResult(jobId);
     }
 
+    [BackgroundOperation]
+    public Task WorkError(int? jobId)
+    {
+        _logger.LogInformation("WorkError Job {JobId}", jobId);
+
+        var exception = new InvalidOperationException("Work Error");
+
+        return Task.FromException(exception);
+    }
+
     [BackgroundOperation<ISampleJob>]
     public Task DoWork(int jobId, string? name)
     {

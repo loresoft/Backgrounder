@@ -9,4 +9,5 @@ public interface ISampleJob
     Task DoWork(int jobId, string? name);
     Task DoWork(int? jobId);
     Task RunSchedule();
+    Task WorkError(int? jobId);
 }

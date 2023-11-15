@@ -70,6 +70,15 @@ public class Program
             .WithOpenApi();
 
         application
+            .MapGet("/sample/work-error/{jobId}", async (IBackgrounder backgrounder, int jobId) =>
+            {
+                await backgrounder.WorkError(jobId);
+                Results.Ok();
+            })
+            .WithName("SampleWorkError")
+            .WithOpenApi();
+
+        application
             .MapPost("/sample/check-person", async (IBackgrounder backgrounder, Person person) =>
             {
                 await backgrounder.CheckPerson(person);
