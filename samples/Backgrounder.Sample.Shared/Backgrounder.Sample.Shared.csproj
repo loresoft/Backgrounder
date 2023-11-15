@@ -1,23 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>820e3a32-f6f7-4f50-9c00-5323d6d19204</UserSecretsId>
+    <Nullable>enable</Nullable>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Backgrounder.Azure.ServiceBus\Backgrounder.Azure.ServiceBus.csproj" />
     <ProjectReference Include="..\..\src\Backgrounder.Generators\Backgrounder.Generators.csproj">
       <OutputItemType>Analyzer</OutputItemType>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\Backgrounder.Sample.Library\Backgrounder.Sample.Library.csproj" />
+    <ProjectReference Include="..\..\src\Backgrounder\Backgrounder.csproj" />
   </ItemGroup>
+
 </Project>

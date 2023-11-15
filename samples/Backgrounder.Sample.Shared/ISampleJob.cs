@@ -1,4 +1,6 @@
-﻿namespace Backgrounder.Sample;
+using Backgrounder.Sample.Shared;
+
+namespace Backgrounder.Sample;
 
 public interface ISampleJob
 {

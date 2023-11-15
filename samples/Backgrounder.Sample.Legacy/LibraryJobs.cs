@@ -1,19 +1,29 @@
-using System;
 using System.Threading.Tasks;
 
-namespace Backgrounder.Sample.Library;
+using Microsoft.Extensions.Logging;
 
-public class LibraryJobs
+namespace Backgrounder.Sample.Legacy;
+
+public class LibraryJobs : ILibraryJobs
 {
-    [BackgroundOperation]
-    public Task LibraryWork(int? jobId)
+    private readonly ILogger<LibraryJobs> _logger;
+
+    public LibraryJobs(ILogger<LibraryJobs> logger)
     {
-        return Task.FromResult(jobId);
+        _logger = logger;
     }
 
     [BackgroundOperation]
+    public Task LibraryWork(int? jobId)
+    {
+        _logger.LogInformation("Library Work {JobId}", jobId);
+        return Task.FromResult(jobId);
+    }
+
+    [BackgroundOperation(ServiceType = typeof(ILibraryJobs))]
     public Task LibraryCompleteWork(int jobId)
     {
+        _logger.LogInformation("Library Complete Work Job {JobId}", jobId);
         return Task.FromResult(jobId);
     }
 
@@ -27,6 +37,7 @@ public class LibraryJobs
     [BackgroundOperation(ExtensionName = "LibraryScheduler")]
     public Task RunSchedule()
     {
+        _logger.LogInformation("Library Run Schedule");
         return Task.CompletedTask;
     }
 }

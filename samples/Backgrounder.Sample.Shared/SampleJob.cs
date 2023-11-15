@@ -1,10 +1,12 @@
-namespace Backgrounder.Sample;
+using Microsoft.Extensions.Logging;
+
+namespace Backgrounder.Sample.Shared;
 
 public class SampleJob : ISampleJob
 {
-    private readonly ILogger<Worker> _logger;
+    private readonly ILogger<SampleJob> _logger;
 
-    public SampleJob(ILogger<Worker> logger)
+    public SampleJob(ILogger<SampleJob> logger)
     {
         _logger = logger;
     }
