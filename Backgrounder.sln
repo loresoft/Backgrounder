@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{7913
 		samples\readme.md = samples\readme.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Sample.Worker", "samples\Backgrounder.Sample.Worker\Backgrounder.Sample.Worker.csproj", "{0179E66C-863C-48D0-B145-517FB47F35A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Sample.ServiceBus.Worker", "samples\Backgrounder.Sample.ServiceBus.Worker\Backgrounder.Sample.ServiceBus.Worker.csproj", "{0179E66C-863C-48D0-B145-517FB47F35A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Azure.ServiceBus", "src\Backgrounder.Azure.ServiceBus\Backgrounder.Azure.ServiceBus.csproj", "{091EE48B-7B76-4B62-8007-F8FC9CE71187}"
 EndProject
@@ -32,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Generators.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Sample.Legacy", "samples\Backgrounder.Sample.Legacy\Backgrounder.Sample.Legacy.csproj", "{098517FD-EFBF-4B60-976B-DF26D5BA4493}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Sample.Web", "samples\Backgrounder.Sample.Web\Backgrounder.Sample.Web.csproj", "{9108BB57-A514-4CDA-966E-EE56D5947125}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Sample.ServiceBus.Web", "samples\Backgrounder.Sample.ServiceBus.Web\Backgrounder.Sample.ServiceBus.Web.csproj", "{9108BB57-A514-4CDA-966E-EE56D5947125}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Sample.Shared", "samples\Backgrounder.Sample.Shared\Backgrounder.Sample.Shared.csproj", "{F54B5ED3-CAAF-4435-B597-E58F53733545}"
 EndProject
