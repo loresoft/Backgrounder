@@ -56,6 +56,7 @@ public static class ServiceCollectionExtensions
 
         services.TryAddSingleton<IBackgrounder, ServiceBusBackgrounder>();
         services.TryAddSingleton<IBackgroundService, ServiceBusBackgroundService>();
+        services.TryAddSingleton<ServiceBusBackgroundService>();
 
         return services;
     }
@@ -83,7 +84,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddBackgrounder(configureOptions);
 
-        services.AddHostedService(sp => sp.GetRequiredService<IBackgroundService>());
+        services.AddHostedService(sp => sp.GetRequiredService<ServiceBusBackgroundService>());
 
         return services;
     }

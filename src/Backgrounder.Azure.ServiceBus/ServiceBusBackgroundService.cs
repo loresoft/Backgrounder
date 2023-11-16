@@ -1,11 +1,12 @@
 using Azure.Messaging.ServiceBus;
 
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Backgrounder.Azure.ServiceBus;
 
-public class ServiceBusBackgroundService : IBackgroundService
+public class ServiceBusBackgroundService : IBackgroundService, IHostedService
 {
     private readonly ILogger<ServiceBusBackgroundService> _logger;
     private readonly ServiceBusClient _serviceBusClient;
