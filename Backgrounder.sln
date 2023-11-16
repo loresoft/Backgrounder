@@ -36,6 +36,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Sample.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backgrounder.Sample.Shared", "samples\Backgrounder.Sample.Shared\Backgrounder.Sample.Shared.csproj", "{F54B5ED3-CAAF-4435-B597-E58F53733545}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backgrounder.RabbitMQ", "src\Backgrounder.RabbitMQ\Backgrounder.RabbitMQ.csproj", "{37A56759-2D4E-43FE-930E-D897D29406AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,10 @@ Global
 		{F54B5ED3-CAAF-4435-B597-E58F53733545}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F54B5ED3-CAAF-4435-B597-E58F53733545}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F54B5ED3-CAAF-4435-B597-E58F53733545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37A56759-2D4E-43FE-930E-D897D29406AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37A56759-2D4E-43FE-930E-D897D29406AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37A56759-2D4E-43FE-930E-D897D29406AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37A56759-2D4E-43FE-930E-D897D29406AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
