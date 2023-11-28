@@ -164,13 +164,13 @@ public class SampleJob : ISampleJob
             .ScrubLinesContaining("GeneratedCodeAttribute");
     }
 
-    public static (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput<T>(string source)
+    private static (ImmutableArray<Diagnostic> Diagnostics, string Output) GetGeneratedOutput<T>(string source)
         where T : IIncrementalGenerator, new()
     {
         var syntaxTree = CSharpSyntaxTree.ParseText(source);
         var references = AppDomain.CurrentDomain.GetAssemblies()
-            .Where(_ => !_.IsDynamic && !string.IsNullOrWhiteSpace(_.Location))
-            .Select(_ => MetadataReference.CreateFromFile(_.Location))
+            .Where(assembly => !assembly.IsDynamic && !string.IsNullOrWhiteSpace(assembly.Location))
+            .Select(assembly => MetadataReference.CreateFromFile(assembly.Location))
             .Concat(new[]
             {
                 MetadataReference.CreateFromFile(typeof(T).Assembly.Location),
@@ -191,6 +191,8 @@ public class SampleJob : ISampleJob
 
         var trees = outputCompilation.SyntaxTrees.ToList();
 
-        return (diagnostics, trees.Count != originalTreeCount ? trees[trees.Count - 1].ToString() : string.Empty);
+        var output = trees.Count != originalTreeCount ? trees[^1].ToString() : string.Empty;
+
+        return (diagnostics, output);
     }
 }
