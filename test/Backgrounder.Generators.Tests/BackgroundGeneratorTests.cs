@@ -7,7 +7,6 @@ using Microsoft.CodeAnalysis.CSharp;
 
 namespace Backgrounder.Generators.Tests;
 
-[UsesVerify]
 public class BackgroundGeneratorTests
 {
     [Fact]

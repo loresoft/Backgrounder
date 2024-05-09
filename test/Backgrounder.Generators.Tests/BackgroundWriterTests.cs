@@ -2,7 +2,6 @@ using Backgrounder.Generators.Internal;
 
 namespace Backgrounder.Generators.Tests;
 
-[UsesVerify]
 public class BackgroundWriterTests
 {
     [Fact]
